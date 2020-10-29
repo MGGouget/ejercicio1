@@ -1,0 +1,18 @@
+POST usuarios/create
+POST /auth 
+GET url generada  
+
+BD 
+CREATE TABLE `usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) DEFAULT NULL,
+  `apellido` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `uidCorreo` varchar(45) DEFAULT NULL,
+  `habilitado` tinyint DEFAULT '0',
+  `ts_create` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `ts_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `correo_UNIQUE` (`correo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

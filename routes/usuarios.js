@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const service = require("./../models/usuarios");
-
-
-/*const { } = require("./");
-const { } = require("./");
-*/
+const { validateCreate  } = require("./../middlewares/usuarios");
+const { secured } = require("./../middlewares/auth");
 const all = (req, res) =>
     service
         .getAll()
@@ -31,8 +28,15 @@ const modify = (req, res) => {
         .catch((e) => res.json(e));
 };
 
+const confirm = (req, res) =>
+    service
+      .confirm( req.query.uid, { habilitado: true })
+      .then((response) => res.json(response))
+      .catch((e) => res.status(500).json(e));
+    
 router.get("/all", all);
 router.get("/single/:id", single);
-router.post("/create", create);
+router.post("/create", validateCreate , create);
 router.put("/modify/:id", modify);
+router.get("/confirm",secured, confirm);
 module.exports = router;

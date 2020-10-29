@@ -1,9 +1,9 @@
 const bd = require("./../utils/bd");
 
-const authenticate = (usuario, password) =>
+const authenticate = (correo, password) =>
     bd("usuarios")
-        .where({ usuario, password })
-        .select("id", "correo", "habilitado");
+        .where({ correo, password })
+        .select("id", "correo", "habilitado", "uidCorreo");
 
 
 module.exports = { authenticate };
